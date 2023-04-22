@@ -22,7 +22,7 @@ void matrix_multiply(int start, int end) {
 int main() {
     std::cout << "Starting matrix multiplication with 64 threads..." << std::endl;
 
-    // Заполнение матриц A и B значениями
+
     for (int i = 0; i < M; i++) {
         for (int j = 0; j < N; j++) {
             A[i][j] = i + j;
@@ -34,7 +34,6 @@ int main() {
         }
     }
 
-    // Создание 64 потоков
     std::thread threads[64];
     int block_size = M / 64;
     for (int i = 0; i < 64; i++) {
@@ -43,7 +42,7 @@ int main() {
         threads[i] = std::thread(matrix_multiply, start, end);
     }
 
-    // Ожидание завершения всех потоков
+
     for (int i = 0; i < 64; i++) {
         threads[i].join();
     }
